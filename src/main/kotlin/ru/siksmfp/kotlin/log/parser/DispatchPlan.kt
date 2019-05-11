@@ -19,10 +19,9 @@ class DispatchPlan(
     fun executePlan() {
         while (bufReader.ready()) {
             val line = bufReader.readLine()
-            val result = dispatcher.processString(line)
+            val result = dispatchIterator.processLine(line)
             if (result != null) {
                 chanel.write(result)
-                dispatcher = dispatchIterator.next()
             }
         }
     }
