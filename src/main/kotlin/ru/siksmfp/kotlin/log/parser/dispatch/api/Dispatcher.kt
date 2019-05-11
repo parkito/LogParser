@@ -4,5 +4,7 @@ import java.nio.ByteBuffer
 
 interface Dispatcher {
 
-    fun processString(line: String): ByteBuffer?
+    fun processString(line: String): String?
+
+    fun getName(): String
 }

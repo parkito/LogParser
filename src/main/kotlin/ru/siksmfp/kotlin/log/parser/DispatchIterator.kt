@@ -4,48 +4,43 @@ import ru.siksmfp.kotlin.log.parser.dispatch.api.Dispatcher
 import java.nio.ByteBuffer
 
 class DispatchIterator(private val dispatchers: List<Dispatcher>) {
+    private val levelList = listOf("DEBUG", "INFO", "TRACE", "ERROR")
 
-    private var counter: Int = 0
     private val dispatchMap = HashMap<String, RequestContext>()
 
-    fun getFirst(): Dispatcher {
-        return dispatchers[0]
-    }
-
-    fun next(): Dispatcher {
-        counter++
-        if (counter > dispatchers.size) {
-            counter = 0
-        }
-        return dispatchers[counter]
-    }
-
     fun processLine(line: String): ByteBuffer? {
-        val request = getRequest(line)
+        val request = getRequest(line) ?: return null
+
         var requestContext = dispatchMap[request]
 
         val currentDispatcher = if (requestContext == null) {
-            requestContext = RequestContext()
+            requestContext = RequestContext(dispatchers)
             dispatchMap[request] = requestContext;
             dispatchers[0]
         } else {
-            dispatchers.get(requestContext.getCurrentDidpatecher())
+            dispatchers.get(requestContext.getCurrentDispatcher())
         }
 
         val processResult = currentDispatcher.processString(line)
         if (processResult != null) {
-            requestContext.addResult(processResult)
+            requestContext.addResult(currentDispatcher.getName(), processResult)
             requestContext.incrementDispatcher()
 
-            if (requestContext.getCurrentDidpatecher() == dispatchers.size) {
+            if (requestContext.getCurrentDispatcher() == dispatchers.size) {
                 return requestContext.getReport()
             }
         }
         return null
     }
 
-    private fun getRequest(line: String): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun getRequest(line: String): String? {
+        for (level in levelList) {
+            val levelIndex = line.indexOf(level)
+            if (levelIndex != -1) {
+                return line.substring(levelIndex + 2, levelIndex + 40)
+            }
+        }
+        return null
     }
 
 }
