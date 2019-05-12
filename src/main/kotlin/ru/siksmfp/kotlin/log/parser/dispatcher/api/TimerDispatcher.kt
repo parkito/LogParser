@@ -1,4 +1,4 @@
-package ru.siksmfp.kotlin.log.parser.dispatch.api
+package ru.siksmfp.kotlin.log.parser.dispatcher.api
 
 import java.util.concurrent.TimeUnit.MILLISECONDS
 import java.util.concurrent.TimeUnit.NANOSECONDS

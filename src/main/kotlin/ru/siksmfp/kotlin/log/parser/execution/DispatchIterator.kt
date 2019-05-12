@@ -1,6 +1,6 @@
-package ru.siksmfp.kotlin.log.parser
+package ru.siksmfp.kotlin.log.parser.execution
 
-import ru.siksmfp.kotlin.log.parser.dispatch.api.Dispatcher
+import ru.siksmfp.kotlin.log.parser.dispatcher.api.Dispatcher
 import java.nio.ByteBuffer
 
 class DispatchIterator(private val dispatchers: List<Dispatcher>) {

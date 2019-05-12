@@ -1,6 +1,6 @@
-package ru.siksmfp.kotlin.log.parser.dispatch.impl
+package ru.siksmfp.kotlin.log.parser.dispatcher.impl.timer
 
-import ru.siksmfp.kotlin.log.parser.dispatch.api.TimerDispatcher
+import ru.siksmfp.kotlin.log.parser.dispatcher.api.TimerDispatcher
 
 class SwitchReadOverAllTimerDispatcher : TimerDispatcher {
     private companion object {

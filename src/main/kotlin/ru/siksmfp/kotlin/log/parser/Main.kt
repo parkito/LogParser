@@ -1,10 +1,11 @@
 package ru.siksmfp.kotlin.log.parser
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import ru.siksmfp.kotlin.log.parser.dispatch.impl.ReadTableDirectCallDispatcher
-import ru.siksmfp.kotlin.log.parser.dispatch.impl.RetrieveRequestParametersDispatcher
-import ru.siksmfp.kotlin.log.parser.dispatch.impl.SwitchReadDbAccessDispatcher
-import ru.siksmfp.kotlin.log.parser.dispatch.impl.SwitchReadOverAllTimerDispatcher
+import ru.siksmfp.kotlin.log.parser.dispatcher.impl.parameter.RetrieveRequestParametersDispatcher
+import ru.siksmfp.kotlin.log.parser.dispatcher.impl.timer.ReadTableDirectCallTimerDispatcher
+import ru.siksmfp.kotlin.log.parser.dispatcher.impl.timer.SwitchReadDbAccessTimerDispatcher
+import ru.siksmfp.kotlin.log.parser.dispatcher.impl.timer.SwitchReadOverAllTimerDispatcher
+import ru.siksmfp.kotlin.log.parser.execution.DispatchPlan
 
 @SpringBootApplication
 open class Main
@@ -13,9 +14,9 @@ fun main(args: Array<String>) {
     val logFilePath = "/Users/parkito/Downloads/logs_exp.txt"
     val reportFilePath = "/Users/parkito/Downloads/report.txt"
     val dispatchers = listOf(
-            ReadTableDirectCallDispatcher(),
+            ReadTableDirectCallTimerDispatcher(),
             RetrieveRequestParametersDispatcher(),
-            SwitchReadDbAccessDispatcher(),
+            SwitchReadDbAccessTimerDispatcher(),
             SwitchReadOverAllTimerDispatcher()
     )
 
@@ -24,10 +25,9 @@ fun main(args: Array<String>) {
 }
 
 
-
 //Retrieval
-// ReadTableDirectCallDispatcher -> RetrieveRequestParametersDispatcher -> SwitchReadDbAccessDispatcher -> SwitchReadOverAllTimerDispatcher
+// ReadTableDirectCallTimerDispatcher -> RetrieveRequestParametersDispatcher -> SwitchReadDbAccessTimerDispatcher -> SwitchReadOverAllTimerDispatcher
 //
 //CISC Retrieval
-//ReadTableDirectCallDispatcher -> RetrieveRequestParametersDispatcher -> SwitchReadDbAccessDispatcher -> SwitchCiscOverAllTimerDispatcher
+//ReadTableDirectCallTimerDispatcher -> RetrieveRequestParametersDispatcher -> SwitchReadDbAccessTimerDispatcher -> SwitchCiscOverAllTimerDispatcher
 //

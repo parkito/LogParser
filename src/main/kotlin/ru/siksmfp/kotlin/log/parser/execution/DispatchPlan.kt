@@ -1,6 +1,6 @@
-package ru.siksmfp.kotlin.log.parser
+package ru.siksmfp.kotlin.log.parser.execution
 
-import ru.siksmfp.kotlin.log.parser.dispatch.api.Dispatcher
+import ru.siksmfp.kotlin.log.parser.dispatcher.api.Dispatcher
 import java.io.BufferedReader
 import java.io.RandomAccessFile
 import java.nio.channels.FileChannel

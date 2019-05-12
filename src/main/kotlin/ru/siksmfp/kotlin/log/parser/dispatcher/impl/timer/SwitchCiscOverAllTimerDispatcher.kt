@@ -1,6 +1,6 @@
-package ru.siksmfp.kotlin.log.parser.dispatch.impl
+package ru.siksmfp.kotlin.log.parser.dispatcher.impl.timer
 
-import ru.siksmfp.kotlin.log.parser.dispatch.api.Dispatcher
+import ru.siksmfp.kotlin.log.parser.dispatcher.api.Dispatcher
 
 class SwitchCiscOverAllTimerDispatcher: Dispatcher {
     override fun processString(line: String): String? {

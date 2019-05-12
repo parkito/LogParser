@@ -1,8 +1,8 @@
-package ru.siksmfp.kotlin.log.parser.dispatch.impl
+package ru.siksmfp.kotlin.log.parser.dispatcher.impl.timer
 
-import ru.siksmfp.kotlin.log.parser.dispatch.api.TimerDispatcher
+import ru.siksmfp.kotlin.log.parser.dispatcher.api.TimerDispatcher
 
-class ReadTableDirectCallDispatcher : TimerDispatcher {
+class ReadTableDirectCallTimerDispatcher : TimerDispatcher {
     private companion object {
         private const val DB_TIMER = "READ_TABLE_DIRECT_CALL"
         private const val TIMER_INDEX_FROM = 82
