@@ -12,6 +12,10 @@ class RequestContext(dispatchers: List<Dispatcher>) {
     private var counter = 0;
     private var isFinished = false
 
+    init {
+        dispatchResultMap[""]= NEW_STRING_SEPARATOR
+    }
+
     fun addResult(name: String, result: String) {
         dispatchResultMap[name] = result
     }
@@ -26,7 +30,7 @@ class RequestContext(dispatchers: List<Dispatcher>) {
                         .stream()
                         .collect(Collectors.joining(NEW_STRING_SEPARATOR))
                         .toByteArray()
-        );
+        )
     }
 
     fun incrementDispatcher() {

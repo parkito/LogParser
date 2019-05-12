@@ -3,8 +3,9 @@ package ru.siksmfp.kotlin.log.parser
 import ru.siksmfp.kotlin.log.parser.dispatch.api.Dispatcher
 import java.nio.ByteBuffer
 
+private val levelList = listOf("DEBUG", "INFO", "TRACE", "ERROR", "WARN")
+
 class DispatchIterator(private val dispatchers: List<Dispatcher>) {
-    private val levelList = listOf("DEBUG", "INFO", "TRACE", "ERROR")
 
     private val dispatchMap = HashMap<String, RequestContext>()
 
