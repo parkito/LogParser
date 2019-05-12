@@ -1,19 +1,21 @@
 package ru.siksmfp.kotlin.log.parser.execution
 
-import ru.siksmfp.kotlin.log.parser.dispatcher.api.Dispatcher
 import java.nio.ByteBuffer
 import java.util.stream.Collectors
 
-private const val NEW_STRING_SEPARATOR = "\n"
-
-class RequestContext(dispatchers: List<Dispatcher>) {
+class RequestContext {
+    private companion object {
+        private const val NEW_STRING_SEPARATOR = "\n"
+        private const val EMPTY = ""
+    }
 
     private val dispatchResultMap = LinkedHashMap<String, String>()
+
     private var counter = 0;
     private var isFinished = false
 
     init {
-        dispatchResultMap[""]= NEW_STRING_SEPARATOR
+        dispatchResultMap[EMPTY] = NEW_STRING_SEPARATOR
     }
 
     fun addResult(name: String, result: String) {

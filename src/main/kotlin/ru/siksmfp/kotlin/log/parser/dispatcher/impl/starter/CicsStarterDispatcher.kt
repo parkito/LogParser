@@ -5,7 +5,7 @@ import ru.siksmfp.kotlin.log.parser.dispatcher.api.StarterDispatcher
 class CicsStarterDispatcher : StarterDispatcher {
     private companion object {
         private const val CICS_INITIALIZATION_PARAMETER = "SWITCH CICS update request initiated"
-        private const val CICS_MESSAGE = "Cisc request"
+        private const val CICS_MESSAGE = "Cisc request "
         private var counter = 0
     }
 

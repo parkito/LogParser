@@ -14,7 +14,7 @@ class DispatchIterator(private val dispatchers: List<Dispatcher>) {
         var requestContext = dispatchMap[request]
 
         val currentDispatcher = if (requestContext == null) {
-            requestContext = RequestContext(dispatchers)
+            requestContext = RequestContext()
             dispatchMap[request] = requestContext;
             dispatchers[0]
         } else {
