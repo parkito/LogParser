@@ -22,3 +22,12 @@ fun main(args: Array<String>) {
     DispatchPlan(logFilePath, reportFilePath, dispatchers)
             .executePlan()
 }
+
+
+
+//Retrieval
+// ReadTableDirectCallDispatcher -> RetrieveRequestParametersDispatcher -> SwitchReadDbAccessDispatcher -> SwitchReadOverAllTimerDispatcher
+//
+//CISC Retrieval
+//ReadTableDirectCallDispatcher -> RetrieveRequestParametersDispatcher -> SwitchReadDbAccessDispatcher -> SwitchCiscOverAllTimerDispatcher
+//

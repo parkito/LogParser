@@ -1,21 +1,18 @@
 package ru.siksmfp.kotlin.log.parser.dispatch.impl
 
-import ru.siksmfp.kotlin.log.parser.dispatch.api.Dispatcher
-import java.util.concurrent.TimeUnit.MILLISECONDS
-import java.util.concurrent.TimeUnit.NANOSECONDS
+import ru.siksmfp.kotlin.log.parser.dispatch.api.TimerDispatcher
 
-class SwitchReadOverAllTimerDispatcher : Dispatcher {
-    companion object {
+class SwitchReadOverAllTimerDispatcher : TimerDispatcher {
+    private companion object {
         private const val DB_TIMER = "SWITCH_READ_OVERALL_TIMER"
+        private const val TIMER_INDEX_FROM = 85
     }
 
-    override fun processString(line: String): String? {
-        val indexOfTimer = line.indexOf(DB_TIMER)
-        if (indexOfTimer != -1) {
-            val nanoSecs = line.substring(indexOfTimer + 85, line.length - 2).toLong()
-            val milliSecs = MILLISECONDS.convert(nanoSecs, NANOSECONDS)
-            return "$DB_TIMER = $milliSecs"
-        }
-        return null
+    override fun getTimerName(): String {
+        return DB_TIMER
+    }
+
+    override fun getTimeIndexFrom(): Int {
+        return TIMER_INDEX_FROM
     }
 }

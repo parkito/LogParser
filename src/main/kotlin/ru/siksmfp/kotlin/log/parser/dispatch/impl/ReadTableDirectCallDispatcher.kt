@@ -1,21 +1,18 @@
 package ru.siksmfp.kotlin.log.parser.dispatch.impl
 
-import ru.siksmfp.kotlin.log.parser.dispatch.api.Dispatcher
-import java.util.concurrent.TimeUnit.MILLISECONDS
-import java.util.concurrent.TimeUnit.NANOSECONDS
+import ru.siksmfp.kotlin.log.parser.dispatch.api.TimerDispatcher
 
-class ReadTableDirectCallDispatcher : Dispatcher {
-    companion object {
+class ReadTableDirectCallDispatcher : TimerDispatcher {
+    private companion object {
         private const val DB_TIMER = "READ_TABLE_DIRECT_CALL"
+        private const val TIMER_INDEX_FROM = 82
     }
 
-    override fun processString(line: String): String? {
-        val indexOfTimer = line.indexOf(DB_TIMER)
-        if (indexOfTimer != -1) {
-            val nanoSecs = line.substring(indexOfTimer + 82, line.length - 2).toLong()
-            val milliSecs = MILLISECONDS.convert(nanoSecs, NANOSECONDS)
-            return "$DB_TIMER = $milliSecs"
-        }
-        return null
+    override fun getTimerName(): String {
+        return DB_TIMER
+    }
+
+    override fun getTimeIndexFrom(): Int {
+        return TIMER_INDEX_FROM
     }
 }
