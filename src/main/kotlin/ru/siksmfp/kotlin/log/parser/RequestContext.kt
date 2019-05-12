@@ -10,6 +10,7 @@ class RequestContext(dispatchers: List<Dispatcher>) {
 
     private val dispatchResultMap = LinkedHashMap<String, String>()
     private var counter = 0;
+    private var isFinished = false
 
     fun addResult(name: String, result: String) {
         dispatchResultMap[name] = result
@@ -30,5 +31,13 @@ class RequestContext(dispatchers: List<Dispatcher>) {
 
     fun incrementDispatcher() {
         counter++
+    }
+
+    fun isFinished(): Boolean {
+        return isFinished
+    }
+
+    fun finish() {
+        isFinished = true
     }
 }

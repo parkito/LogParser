@@ -18,7 +18,10 @@ class DispatchIterator(private val dispatchers: List<Dispatcher>) {
             dispatchMap[request] = requestContext;
             dispatchers[0]
         } else {
-            dispatchers.get(requestContext.getCurrentDispatcher())
+            if (requestContext.isFinished()) {
+                return null
+            }
+            dispatchers[requestContext.getCurrentDispatcher()]
         }
 
         val processResult = currentDispatcher.processString(line)
@@ -26,7 +29,8 @@ class DispatchIterator(private val dispatchers: List<Dispatcher>) {
             requestContext.addResult(currentDispatcher.getName(), processResult)
             requestContext.incrementDispatcher()
 
-            if (requestContext.getCurrentDispatcher() == dispatchers.size) {
+            if (requestContext.getCurrentDispatcher() >= dispatchers.size) {
+                requestContext.finish()
                 return requestContext.getReport()
             }
         }
@@ -37,7 +41,7 @@ class DispatchIterator(private val dispatchers: List<Dispatcher>) {
         for (level in levelList) {
             val levelIndex = line.indexOf(level)
             if (levelIndex != -1) {
-                return line.substring(levelIndex + 2, levelIndex + 40)
+                return line.substring(levelIndex + 6, levelIndex + 40)
             }
         }
         return null
