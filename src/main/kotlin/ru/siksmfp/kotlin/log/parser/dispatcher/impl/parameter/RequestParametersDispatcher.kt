@@ -1,6 +1,6 @@
 package ru.siksmfp.kotlin.log.parser.dispatcher.impl.parameter
 
-class RetrieveRequestParametersDispatcher : ru.siksmfp.kotlin.log.parser.dispatcher.api.Dispatcher {
+class RequestParametersDispatcher : ru.siksmfp.kotlin.log.parser.dispatcher.api.Dispatcher {
 
     override fun processString(line: String): String? {
         val indexOfProcess = line.indexOf("retrieval processed:")
