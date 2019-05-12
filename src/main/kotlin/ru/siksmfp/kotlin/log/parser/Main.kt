@@ -3,6 +3,7 @@ package ru.siksmfp.kotlin.log.parser
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import ru.siksmfp.kotlin.log.parser.dispatch.impl.RetrieveRequestParametersDispatcher
 import ru.siksmfp.kotlin.log.parser.dispatch.impl.SwitchReadDbAccessDispatcher
+import ru.siksmfp.kotlin.log.parser.dispatch.impl.SwitchReadOverAllTimerDispatcher
 
 @SpringBootApplication
 open class Main
@@ -12,7 +13,8 @@ fun main(args: Array<String>) {
     val reportFilePath = "/Users/parkito/Downloads/report.txt"
     val dispatchers = listOf(
             RetrieveRequestParametersDispatcher(),
-            SwitchReadDbAccessDispatcher()
+            SwitchReadDbAccessDispatcher(),
+            SwitchReadOverAllTimerDispatcher()
     )
 
     DispatchPlan(logFilePath, reportFilePath, dispatchers)
