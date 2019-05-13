@@ -19,7 +19,6 @@ application {
 
 dependencies {
     compile(kotlin("stdlib"))
-    implementation("org.springframework.boot:spring-boot-starter:2.1.4.RELEASE")
     compile("info.picocli:picocli:3.9.5")
     testCompile("org.junit.jupiter:junit-jupiter-engine:5.4.1")
 }
